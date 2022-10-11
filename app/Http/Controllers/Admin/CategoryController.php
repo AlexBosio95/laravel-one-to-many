@@ -74,7 +74,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dataCategory = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('dataCategory'));
     }
 
     /**
@@ -86,7 +87,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:100|min:2'
+        ]);
+
+        $dataCategory = Category::findOrFail($id);
+        $data = $request->all();
+
+        if ($dataCategory->name !== $data['name']) {
+            $data['slug'] = $this->getUniqueSlug($data['name']);
+        }
+
+        $dataCategory->update();
+        $dataCategory->save();
+
+        return redirect()->route('admin.category.edit', ['category' => $id])->with('update', 'Category Updated');
+
     }
 
     /**

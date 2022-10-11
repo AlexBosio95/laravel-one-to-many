@@ -13,10 +13,15 @@
                 {{$data->slug}}
             </div>
             <div class="card-body">
-                <p class="card-text">{{$data->content}}</p>
-                <div class="card-footer text-muted">
-                    {{$data->tag}}
-                </div>
+                <p class="card-text text-center">{{$data->content}}</p>
+            </div>
+
+            <div class="card-footer text-muted">
+                Category: {{($data->category) ? $data->category->name : 'Not'}}
+            </div>
+
+            <div class="card-footer text-muted">
+                Tag: {{$data->tag}}
             </div>
         </div>    
     </div>

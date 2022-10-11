@@ -37,7 +37,7 @@
                     <td>{{$post->name}}</td>
                     <td>{{$post->slug}}</td>
                     <td>{{$post->tag}}</td>
-                    <td>{{$post->tag}}</td>
+                    <td>{{($post->category) ? $post->category->name : 'Not'}}</td>
                     <td class="d-flex justify-content-center">
                         <a class="btn btn-success mx-2" href="{{route('admin.posts.show', ['post' => $post])}}">Preview</a>
                         <a class="btn btn-warning mx-2" href="{{route('admin.posts.edit', ['post' => $post])}}">Edit</a>

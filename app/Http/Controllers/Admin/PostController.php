@@ -44,7 +44,7 @@ class PostController extends Controller
             'name' => 'required|max:100|min:2',
             'content' => 'required|max:65535|min:2',
             'tag' => 'required|max:255|min:2',
-            'category_id' => 'required|max:255|min:2'
+            'category_id' => 'nullable|exists:categories,id'
         ]);
 
         $data = $request->all();
@@ -87,7 +87,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $data = posts::findOrFail($id);
-        return view('admin.posts.edit', compact('data'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('data', 'categories'));
     }
 
     /**
@@ -102,7 +103,8 @@ class PostController extends Controller
         $request->validate([
             'name' => 'required|max:100|min:2',
             'content' => 'required|max:65535|min:2',
-            'tag' => 'required|max:255|min:2'
+            'tag' => 'required|max:255|min:2',
+            'category_id' => 'nullable|exists:categories,id'
 
         ]);
 
