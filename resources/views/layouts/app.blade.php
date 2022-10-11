@@ -41,6 +41,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.posts.create') }}">New Post</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.category.index') }}">Gestione Category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.category.create') }}">New Category</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -30,6 +30,21 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
+
+            <div class="form-group">
+                <label for="CategorySelect">Category</label>
+                <select class="form-control @error('category_id') is-invalid @enderror" id="CategorySelect" name="category_id">
+                    <option {{(old('category_id') == $category->id) ? 'selected' : ''}}>No Category</option>
+                    @foreach ($categories as $category)
+                        <option {{(old('category_id') == $category->id) ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            
             
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
