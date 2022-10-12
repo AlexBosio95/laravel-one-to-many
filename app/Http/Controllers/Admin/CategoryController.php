@@ -63,7 +63,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $dataCategory = Category::findOrFail($id);
+        return view('admin.categories.show', compact('dataCategory'));
     }
 
     /**
@@ -98,7 +99,7 @@ class CategoryController extends Controller
             $data['slug'] = $this->getUniqueSlug($data['name']);
         }
 
-        $dataCategory->update();
+        $dataCategory->update($data);
         $dataCategory->save();
 
         return redirect()->route('admin.category.edit', ['category' => $id])->with('update', 'Category Updated');
@@ -113,7 +114,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dataCategory = Category::findOrFail($id);
+        $dataCategory->delete();
+        return redirect()->route('admin.category.index', ['category' => $dataCategory])->with('status', 'Category deleted');
+
     }
 
 
